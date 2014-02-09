@@ -14,4 +14,9 @@ module AuthenticationHelpers
   def user_should_be_signed_out
     expect(page).to have_content "Sign in"
   end
+
+  def sign_in
+    user = create(:user)
+    sign_in_as user.email, user.password
+  end
 end

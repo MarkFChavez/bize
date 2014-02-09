@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  project:
+    create:
+      success: "Project has been created successfully"

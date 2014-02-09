@@ -1,0 +1,18 @@
+<% unless @project.errors.empty? %>
+  <ul>
+    <% @project.errors.full_messages.each do |e| %>
+      <li> <%= e %> </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @project do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.submit "Create project" %>
+  </div>
+<% end %>

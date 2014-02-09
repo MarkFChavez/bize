@@ -13,9 +13,13 @@ set :deploy_to, "/home/ubuntu/nginx"
 set :use_sudo, false
 set :rails_env, "production"
 
-set :deploy_via, :remote_cache
+set :deploy_via, :copy
 set :ssh_options, { :forward_agent => true }
 set :keep_releases, 5
+
+set :db_name, "bize"
+set :db_user, "dbadmin"
+set :db_pass, "dbadmin"
 
 ssh_options[:keys] = ["/Users/mark/.ssh/mark-macosx.pem"]
 default_run_options[:pty] = true
@@ -24,12 +28,23 @@ server "54.213.82.201", :app, :web, :db, :primary => true
 
 after "deploy", "deploy:restart"
 after "deploy", "deploy:cleanup"
-before "deploy:assets:precompile", "deploy:symlink_config_files"
+before "deploy:restart", "deploy:symlink_config_files"
+# before "deploy:assets:precompile", "deploy:symlink_config_files"
 
 namespace :deploy do
+  desc "Create db"
+  task "create" do
+    run "cd #{current_path} && rake db:create RAILS_ENV=#{rails_env}"
+  end
+
+  desc "Run seed file"
+  task "seed" do
+    run "cd #{current_path} && rake db:seed RAILS_ENV=#{rails_env}"
+  end
+
   desc "Symlink shared config files"
   task :symlink_config_files do
-    run "#{try_sudo} ln -sf #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
+    run "#{sudo} ln -sf #{deploy_to}/shared/config/database.yml #{latest_release}/config/database.yml"
   end
 
   desc "Restart passenger"
