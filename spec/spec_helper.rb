@@ -20,7 +20,6 @@ RSpec.configure do |config|
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
-  
   config.include FactoryGirl::Syntax::Methods
   config.include AuthenticationHelpers
 

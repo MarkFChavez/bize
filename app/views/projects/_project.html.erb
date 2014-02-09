@@ -1,0 +1,4 @@
+<%= div_for project do %>
+  <p> <%= project.name %> </p>
+  <span> Created <%= distance_of_time_in_words(Time.now, project.created_at) %> </span>
+<% end %>
