@@ -1,4 +1,8 @@
 module AuthenticationHelpers
+  def create_user(email, password)
+    user = create(:user, email: email, password: password)
+  end
+
   def sign_in_as(email, password)
     visit root_path
 

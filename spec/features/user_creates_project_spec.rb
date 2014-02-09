@@ -19,6 +19,7 @@ feature 'User creates a project' do
     click_on 'Create project'
 
     expect(page).to have_css '.flash', text: 'Project has been created successfully'
+    expect(page).to have_css '.project', text: 'Sample project'
   end
 
   scenario 'with an already existing name' do

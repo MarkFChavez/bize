@@ -24,3 +24,5 @@ en:
   project:
     create:
       success: "Project has been created successfully"
+    update:
+      success: "Project has been updated successfully"

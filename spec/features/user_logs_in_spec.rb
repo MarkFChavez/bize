@@ -3,7 +3,6 @@ require 'spec_helper'
 feature 'User logs in' do
   scenario 'using valid credentials' do
     user = create(:user)
-    
     sign_in_as user.email, user.password
 
     user_should_be_signed_in

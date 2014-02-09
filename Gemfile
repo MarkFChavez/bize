@@ -19,7 +19,7 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'factory_girl_rails'
-  gem 'faker'
+  gem 'faker', :github => 'stympy/faker', :branch => :master
 end
 
 group :production do
